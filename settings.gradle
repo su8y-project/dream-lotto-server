@@ -1,0 +1,10 @@
+rootProject.name = 'su8y-project'
+
+include 'bootstrap'
+includeBuild('lib/common') {
+    dependencySubstitution {
+        substitute module('com.su8y.common:core') using project(':core')
+        substitute module('com.su8y.common:api') using project(':api')
+        substitute module('com.su8y.common:logging') using project(':logging')
+    }
+}
