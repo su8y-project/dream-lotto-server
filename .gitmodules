@@ -1,3 +1,6 @@
 [submodule "lib/common"]
 	path = lib/common
 	url = https://github.com/su8y-project/common-server
+[submodule "lib/user"]
+	path = lib/user
+	url = git@github.com:su8y-project/user.git
