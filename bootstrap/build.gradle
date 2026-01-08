@@ -1,20 +1,11 @@
-plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.2.1'
-}
-
-bootJar {
-    enabled = true
-}
-
-jar {
-    enabled = true
-}
-
 dependencies {
     implementation 'com.su8y.common:api'
     implementation 'com.su8y.common:logging'
+    implementation 'com.su8y.user:user-domain'
+    implementation 'com.su8y.user:user-application'
+    implementation 'com.su8y.user:user-adaptor'
 
+    implementation 'com.h2database:h2'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
