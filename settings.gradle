@@ -8,7 +8,7 @@ pluginManagement {
 rootProject.name = 'su8y-project'
 
 include 'bootstrap'
-include 'auth'
 
 includeBuild('lib/common')
 includeBuild('lib/user')
+includeBuild('lib/auth')
