@@ -4,6 +4,9 @@ dependencies {
     implementation 'com.su8y.user:user-domain'
     implementation 'com.su8y.user:user-application'
     implementation 'com.su8y.user:user-adaptor'
+    implementation 'com.su8y.auth:auth-domain'
+    implementation 'com.su8y.auth:auth-application'
+    implementation 'com.su8y.auth:auth-infrastructure'
 
     implementation 'com.h2database:h2'
     implementation 'org.springframework.boot:spring-boot-starter-web'

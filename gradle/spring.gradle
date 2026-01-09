@@ -6,7 +6,7 @@ subprojects {
     bootJar.enabled = false
     jar.enabled = true
 
-    if (name == 'bootstrap'){
+    if (name == 'bootstrap') {
         bootJar.enabled = true
     }
 

@@ -19,3 +19,18 @@ allprojects {
     }
 }
 
+tasks.register("testAll") {
+    group = "verification"
+
+    if (tasks.findByName("test")) {
+        dependsOn(tasks.named("test"))
+    }
+
+    gradle.includedBuilds.each { included ->
+        try {
+            dependsOn(included.task(':test'))
+        } catch (Exception e) {
+            println "Skipping test for ${included.name}: no :test task found."
+        }
+    }
+}
