@@ -9,6 +9,6 @@ rootProject.name = 'su8y-project'
 
 include 'bootstrap'
 
-includeBuild('lib/common')
-includeBuild('lib/user')
-includeBuild('lib/auth')
+includeBuild('common')
+includeBuild('user')
+includeBuild('auth')
