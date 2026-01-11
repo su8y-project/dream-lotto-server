@@ -1,15 +1,14 @@
 package com.su8y.bootstrap.controller;
 
-import com.su8y.common.logging.time.LogExecutionTime;
-
-import org.springframework.web.bind.annotation.*;
-
-import jakarta.validation.Valid;
-
 import com.su8y.bootstrap.dto.SampleRequest;
 import com.su8y.bootstrap.service.SampleService;
+import com.su8y.common.logging.time.LogExecutionTime;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/sample")
@@ -19,6 +18,14 @@ public class SampleController {
 
 	private final SampleService sampleService;
 
+	@LogExecutionTime
+	@GetMapping("/auth-success")
+	@PreAuthorize("isAuthenticated()")
+	public String getSuccessWithAuth() {
+		log.info("SampleController.getSuccess()");
+		String result = sampleService.getSuccessData();
+		return result;
+	}
 	@LogExecutionTime
 	@GetMapping("/success")
 	public String getSuccess() {

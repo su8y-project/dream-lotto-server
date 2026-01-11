@@ -8,6 +8,7 @@ pluginManagement {
 rootProject.name = 'su8y-project'
 
 include 'bootstrap'
+include 'lotto:domain'
 
 includeBuild('common')
 includeBuild('user')
