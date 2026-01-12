@@ -1,5 +1,6 @@
 package com.su8y.lotto.application;
 
+import com.su8y.common.idgenerator.IdGenerator;
 import com.su8y.lotto.application.service.LottoRandomGenerationCommand;
 import com.su8y.lotto.application.service.LottoRandomLottoGenerator;
 import com.su8y.lotto.domain.LottoTicket;
@@ -9,7 +10,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.util.IdGenerator;
 
 import java.util.HashSet;
 import java.util.List;
@@ -32,9 +32,8 @@ class LottoRandomLottoGeneratorTest {
     @DisplayName("랜덤 로또 티켓을 생성한다")
     void generate_shouldCreateRandomLottoTicket() {
         // given
-        UUID expectedUuid = UUID.randomUUID();
-        long expectedIdValue = expectedUuid.getMostSignificantBits();
-        when(idGenerator.generateId()).thenReturn(expectedUuid);
+        Long expectedUuid = 1L;
+        when(idGenerator.generate()).thenReturn(expectedUuid);
 
         LottoRandomGenerationCommand command = new LottoRandomGenerationCommand();
 
@@ -44,7 +43,7 @@ class LottoRandomLottoGeneratorTest {
         // then
         assertThat(lottoTicket).isNotNull();
         assertThat(lottoTicket.getId()).isNotNull();
-        assertThat(lottoTicket.getId().getValue()).isEqualTo(expectedIdValue); // ID 값 검증
+        assertThat(lottoTicket.getId().getValue()).isEqualTo(expectedUuid); // ID 값 검증
         assertThat(lottoTicket.getCreatedAt()).isNotNull();
 
         // 번호 검증

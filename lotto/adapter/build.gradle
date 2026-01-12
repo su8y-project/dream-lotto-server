@@ -2,5 +2,7 @@ dependencies {
     implementation project(":lotto:application")
     implementation project(":lotto:domain")
 
+    implementation 'com.su8y.common:id-generator'
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
 }

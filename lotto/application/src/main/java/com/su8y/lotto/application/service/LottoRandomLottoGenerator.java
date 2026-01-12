@@ -1,11 +1,11 @@
 package com.su8y.lotto.application.service;
 
+import com.su8y.common.idgenerator.IdGenerator;
 import com.su8y.lotto.domain.LottoGenerator;
 import com.su8y.lotto.domain.LottoNumbers;
 import com.su8y.lotto.domain.LottoTicket;
 
 import org.springframework.stereotype.Component;
-import org.springframework.util.IdGenerator;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class LottoRandomLottoGenerator implements LottoGenerator {
 		List<Integer> lottoNumbers = numbers.subList(0, LOTTO_NUMBER_COUNT);
 
 		return new LottoTicket(
-				new LottoTicket.Id(idGenerator.generateId().getMostSignificantBits()),
+				new LottoTicket.Id(idGenerator.generate()),
 				new LottoNumbers(lottoNumbers),
 				new LottoRandomGenerationMetadata(),
 				LocalDateTime.now()
