@@ -9,12 +9,12 @@ public class LottoGeneratorFactory {
 		this.generators = generators;
 	}
 
-	public LottoGenerator getGenerator(String name) {
+	public LottoGenerator getGenerator(LottoGenerator.LottoGenerationCommand command) {
 		return this.generators.stream()
-				.filter(g -> g.isSupport(name))
+				.filter(g -> g.isSupport(command.getMethod()))
 				.findFirst()
 				.orElseThrow(() -> new LottoGeneratorCannotSupportException(
-						String.format("Not Support Lotto Generator \"%s\"", name)
+						String.format("Not Support Lotto Generator \"%s\"", command.getMethod())
 				));
 	}
 

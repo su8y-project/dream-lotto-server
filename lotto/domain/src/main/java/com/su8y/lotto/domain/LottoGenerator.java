@@ -11,5 +11,6 @@ public interface LottoGenerator {
 	boolean isSupport(String lottoType);
 
 	interface LottoGenerationCommand {
+		String getMethod();
 	}
 }

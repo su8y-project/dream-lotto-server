@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(":lotto:domain")
+    implementation 'com.su8y.common:core'
+    implementation 'com.su8y.common:api'
+}
