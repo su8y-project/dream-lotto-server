@@ -1,6 +1,7 @@
 package com.su8y.bootstrap;
 
 import com.su8y.common.logging.time.LogExecutionTime;
+import com.su8y.common.resilience.api.annotation.RateProtection;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,7 @@ public class SampleController {
 
 	@LogExecutionTime
 	@GetMapping("/success")
+	@RateProtection(name = "sample")
 	public String getSuccess() {
 		log.info("SampleController.getSuccess()");
 		String result = sampleService.getSuccessData();

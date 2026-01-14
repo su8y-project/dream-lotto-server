@@ -8,6 +8,9 @@ dependencies {
     implementation 'com.su8y.auth:auth-domain'
     implementation 'com.su8y.auth:auth-application'
     implementation 'com.su8y.auth:auth-infrastructure'
+    implementation 'com.su8y.common.resilience:resilience-api'
+    implementation 'com.su8y.common.resilience:resilience-core'
+    implementation 'com.su8y.common.resilience:resilience4j-provider'
 
     implementation project(":lotto:adapter")
 

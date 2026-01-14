@@ -19,3 +19,29 @@ spring:
     import: classpath:application-oauth.yml
 jwt:
   secret: ${JWT_SECRET}
+  # lotto/application/src/main/resources/application.yml
+resilience:
+  provider:
+    rate-limiter: memory # 우리가 만든 메모리 구현체 사용
+    lock: memory
+resilience4j:
+  # 1. 서킷 브레이커 설정 (Outbound)
+  circuitbreaker:
+    instances:
+      sample: # @CircuitProtection(name = "ai-server")
+        slidingWindowSize: 10         # 최근 10개 요청 기준
+        failureRateThreshold: 50      # 50% 실패 시 서킷 OPEN
+        waitDurationInOpenState: 10s  # 10초 동안 차단 후 재시도
+        minimumNumberOfCalls: 5       # 최소 5번 호출 후 계산
+
+  # 2. 레이트 리미터 설정 (Inbound)
+  ratelimiter:
+    instances:
+      sample:
+        limitForPeriod: 5             # 허용 개수
+        limitRefreshPeriod: 1s        # 1초마다 리필 (즉, 초당 5회)
+        timeoutDuration: 0            # 대기 시간 없음 (바로 거절)
+management:
+  health:
+    redis:
+      enabled: false
