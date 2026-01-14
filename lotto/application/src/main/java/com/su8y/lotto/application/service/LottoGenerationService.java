@@ -5,8 +5,10 @@ import com.su8y.lotto.application.port.in.LottoGenerationUseCase;
 import com.su8y.lotto.domain.LottoGenerator;
 import com.su8y.lotto.domain.LottoGeneratorFactory;
 import com.su8y.lotto.domain.LottoTicket;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor

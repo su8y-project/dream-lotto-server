@@ -1,4 +1,4 @@
-package com.su8y.bootstrap.service;
+package com.su8y.bootstrap;
 
 import com.su8y.common.api.error.BusinessException;
 import com.su8y.common.api.error.ErrorCode;

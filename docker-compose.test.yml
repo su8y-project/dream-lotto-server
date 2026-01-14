@@ -1,0 +1,21 @@
+services:
+  app:
+    build: .
+    environment:
+      - SPRING_PROFILES_ACTIVE=test
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs:/app/logs
+
+  k6:
+    image: grafana/k6
+    volumes:
+      - ./lotto/k6/src:/lotto/src
+      - ./lotto/k6/results:/results
+    command: run /lotto/src/scenarios/lotto_random.js --summary-export=/logs/lotto-random-result.json
+    depends_on:
+      app:
+        condition: service_healthy # 서버가 정상일 때만 k6 실행

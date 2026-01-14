@@ -1,4 +1,4 @@
-package com.su8y.bootstrap.dto;
+package com.su8y.bootstrap;
 
 import jakarta.validation.constraints.NotEmpty;
 

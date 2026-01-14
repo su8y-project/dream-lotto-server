@@ -1,6 +1,7 @@
-# Lotto Server  
+# Lotto Server
 
 ## 시작하기
+
 ```sh
 # typing your secret variables
 cp ./example/.env-example .env

@@ -1,0 +1,14 @@
+{
+  "name": "lotto-k6-performance-test",
+  "version": "1.0.0",
+  "description": "Lotto Domain Performance Testing",
+  "main": "src/scenarios/lotto_random.js",
+  "scripts": {
+    "test:random": "k6 run src/scenarios/lotto_random.js",
+    "test:summary": "k6 run --summary-export=result.json src/scenarios/lotto_random.js",
+    "test:cloud": "k6 cloud src/scenarios/lotto_random.js"
+  },
+  "devDependencies": {
+    "k6": "^0.0.0"
+  }
+}
