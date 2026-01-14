@@ -1,7 +1,8 @@
-package com.su8y.bootstrap.service;
+package com.su8y.bootstrap;
 
 import com.su8y.common.api.error.BusinessException;
 import com.su8y.common.api.error.ErrorCode;
+import com.su8y.common.resilience.api.annotation.CircuitProtection;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -13,9 +14,9 @@ public class SampleService {
 		return "This is success data from SampleService.";
 	}
 
+	@CircuitProtection(name = "sample")
 	public void makeBusinessException() {
-		// Assume some business logic fails
-		throw new BusinessException(SampleErrorCode.SAMPLE_ERROR); // Or any other custom error
+		throw new BusinessException(SampleErrorCode.SAMPLE_ERROR, "Sample Error"); // Or any other custom error
 	}
 
 	enum SampleErrorCode implements ErrorCode {

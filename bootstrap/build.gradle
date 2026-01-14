@@ -1,12 +1,18 @@
 dependencies {
     implementation 'com.su8y.common:api'
     implementation 'com.su8y.common:logging'
+    implementation 'com.su8y.common:id-generator'
     implementation 'com.su8y.user:user-domain'
     implementation 'com.su8y.user:user-application'
     implementation 'com.su8y.user:user-adaptor'
     implementation 'com.su8y.auth:auth-domain'
     implementation 'com.su8y.auth:auth-application'
     implementation 'com.su8y.auth:auth-infrastructure'
+    implementation 'com.su8y.common.resilience:resilience-api'
+    implementation 'com.su8y.common.resilience:resilience-core'
+    implementation 'com.su8y.common.resilience:resilience4j-provider'
+
+    implementation project(":lotto:adapter")
 
     implementation 'com.h2database:h2'
     implementation 'org.springframework.boot:spring-boot-starter-web'
