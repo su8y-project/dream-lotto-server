@@ -1,4 +1,4 @@
-package com.su8y.lotto.application.port.in;
+package com.su8y.lotto.application.port.port;
 
 import com.su8y.common.core.domain.QueryRepository;
 import com.su8y.lotto.domain.LottoTicket;
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Lotto 정보를 조회
  */
-public interface LottoQueryUseCase extends QueryRepository<LottoTicket, LottoTicket.Id> {
+public interface LottoQueryPort extends QueryRepository<LottoTicket, LottoTicket.Id> {
 	/**
 	 * 사용자가 발급한 로또 번호 조회
 	 *
