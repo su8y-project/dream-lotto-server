@@ -9,7 +9,6 @@ hs_err_pid*
 ### Build Output
 /target/
 /build/
-out/
 
 ### IDE ###
 .idea/

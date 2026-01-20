@@ -6,11 +6,13 @@ import com.su8y.common.core.domain.TypeId;
 import java.time.LocalDateTime;
 
 public class LottoTicket extends AggregateRoot<LottoTicket, LottoTicket.Id> {
+	private final Long userId;
 	private final LottoNumbers numbers;
 	private final GenerationMetadata generationMetadata;
 	private final LocalDateTime createdAt;
 
-	public LottoTicket(Id id, LottoNumbers numbers, GenerationMetadata generationMetadata, LocalDateTime createdAt) {
+	public LottoTicket(Id id, Long userId, LottoNumbers numbers, GenerationMetadata generationMetadata, LocalDateTime createdAt) {
+		this.userId = userId;
 		this.id = id;
 		this.numbers = numbers;
 		this.generationMetadata = generationMetadata;
@@ -27,6 +29,10 @@ public class LottoTicket extends AggregateRoot<LottoTicket, LottoTicket.Id> {
 
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
+	}
+
+	public Long getUserId() {
+		return userId;
 	}
 
 	public static class Id extends TypeId<Long> {

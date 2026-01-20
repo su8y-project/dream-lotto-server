@@ -25,16 +25,21 @@ public class LottoRandomLottoGenerator implements LottoGenerator {
 
 	@Override
 	public LottoTicket generate(LottoGenerationCommand command) {
-		List<Integer> numbers = new ArrayList<>(IntStream.rangeClosed(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER).boxed().toList());
-		Collections.shuffle(numbers);
-		List<Integer> lottoNumbers = numbers.subList(0, LOTTO_NUMBER_COUNT);
+		if (command instanceof LottoRandomGenerationCommand userCommand) {
+			List<Integer> numbers = new ArrayList<>(IntStream.rangeClosed(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER).boxed().toList());
+			Collections.shuffle(numbers);
+			List<Integer> lottoNumbers = numbers.subList(0, LOTTO_NUMBER_COUNT);
 
-		return new LottoTicket(
-				new LottoTicket.Id(idGenerator.generate()),
-				new LottoNumbers(lottoNumbers),
-				new LottoRandomGenerationMetadata(),
-				LocalDateTime.now()
-		);
+			return new LottoTicket(
+					new LottoTicket.Id(idGenerator.generate()),
+					userCommand.getUserId(),
+					new LottoNumbers(lottoNumbers),
+					new LottoRandomGenerationMetadata(),
+					LocalDateTime.now()
+			);
+		} else {
+			throw new IllegalArgumentException("Invalid command type");
+		}
 	}
 
 	@Override

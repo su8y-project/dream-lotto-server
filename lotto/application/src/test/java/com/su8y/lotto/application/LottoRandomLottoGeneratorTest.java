@@ -35,7 +35,7 @@ class LottoRandomLottoGeneratorTest {
 		Long expectedUuid = 1L;
 		when(idGenerator.generate()).thenReturn(expectedUuid);
 
-		LottoRandomGenerationCommand command = new LottoRandomGenerationCommand();
+		LottoRandomGenerationCommand command = new LottoRandomGenerationCommand(0L);
 
 		// when
 		LottoTicket lottoTicket = lottoRandomLottoGenerator.generate(command);
