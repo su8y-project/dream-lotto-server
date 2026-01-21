@@ -1,0 +1,13 @@
+{
+  "name": "lotto-k6-performance-test",
+  "version": "1.0.0",
+  "description": "Lotto Domain Performance Testing",
+  "main": "src/learn/tps/test_order.js",
+  "scripts": {
+    "test:random": "k6 run src/learn/tps/test_order.js",
+    "test:summary": "k6 run --summary-export=result.json src/learn/tps/test_order.js",
+  },
+  "devDependencies": {
+    "k6": "^0.0.0"
+  }
+}
