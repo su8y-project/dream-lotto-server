@@ -28,6 +28,7 @@ services:
       - redis
 
   postgres:
+    container_name: postgres_container
     image: postgres:15
     env_file:
       - .env.docker
