@@ -15,11 +15,15 @@ spring:
       hibernate:
         format_sql: true
         use_sql_comments: true
-  config:
-    import: classpath:application-oauth.yml
+
+  profiles:
+    include: oauth,monitoring
+  data:
+    redis:
+      host: ${SPRING_DATA_REDIS_HOST:localhost}
 jwt:
   secret: ${JWT_SECRET}
-  # lotto/application/src/main/resources/application.yml
+  # lotto/application/src/main/resources/application-resilience.yml
 resilience:
   provider:
     rate-limiter: memory # 우리가 만든 메모리 구현체 사용
@@ -41,7 +45,3 @@ resilience4j:
         limitForPeriod: 5             # 허용 개수
         limitRefreshPeriod: 1s        # 1초마다 리필 (즉, 초당 5회)
         timeoutDuration: 0            # 대기 시간 없음 (바로 거절)
-management:
-  health:
-    redis:
-      enabled: false
