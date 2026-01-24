@@ -59,7 +59,6 @@ services:
     image: prom/prometheus
     container_name: prometheus_container
     volumes:
-#      - ./volume/prometheus:/prometheus/data
       - ./config/prometheus:/etc/prometheus
     ports:
       - "9090:9090"
@@ -76,7 +75,6 @@ services:
     ports:
       - "3000:3000"
     volumes:
-#      - ./volume/grafana:/var/lib/grafana
       - ./config/grafana/provisioning:/etc/grafana/provisioning
     env_file:
       - .env.docker
