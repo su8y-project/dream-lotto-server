@@ -15,7 +15,7 @@ public class OrderController {
 
 	private final OrderService orderService;
 
-	public OrderController(@Qualifier("v3WithTxOrderFacade") OrderService orderService) {
+	public OrderController(@Qualifier("v4WithTxOrderFacade") OrderService orderService) {
 		this.orderService = orderService;
 	}
 
