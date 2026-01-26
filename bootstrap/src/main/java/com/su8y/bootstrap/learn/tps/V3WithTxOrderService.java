@@ -4,16 +4,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class V3OrderService implements OrderService{
+public class V3WithTxOrderService {
 
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
+	private final V3WithTxStockService stockService;
 
-    public V3OrderService(ProductRepository productRepository,
-						  OrderRepository orderRepository) {
+    public V3WithTxOrderService(ProductRepository productRepository,
+								OrderRepository orderRepository, V3WithTxStockService stockService) {
         this.productRepository = productRepository;
         this.orderRepository = orderRepository;
-    }
+		this.stockService = stockService;
+	}
 
 	/**
 	 * Postgresql InnoDB의 원자적 연산 row 락을 통해서 트랜잭션 범위를 줄인다.
@@ -22,16 +24,7 @@ public class V3OrderService implements OrderService{
 	 * @return
 	 */
     @Transactional
-    public Long placeOrder(Long productId, int quantity) {
-
-        // 1. 상품 조회 (트랜잭션 시작)
-		int updatedCount = productRepository.decreaseStock(productId, quantity);
-
-		if (updatedCount == 0) {
-			throw new IllegalArgumentException("재고가 부족하거나 상품이 존재하지 않습니다.");
-		}
-
-		// 4. 주문 생성 및 저장
+    public Long createOrder(Long productId, int quantity) {
 		Order order = new Order(productId, quantity);
 		orderRepository.save(order);
 

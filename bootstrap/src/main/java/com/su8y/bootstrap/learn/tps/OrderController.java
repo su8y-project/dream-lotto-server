@@ -9,15 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.annotation.security.PermitAll;
 
-import lombok.RequiredArgsConstructor;
-
 @RestController
 @RequestMapping("/api/orders")
 public class OrderController {
 
 	private final OrderService orderService;
 
-	public OrderController(@Qualifier("v3OrderService") OrderService orderService) {
+	public OrderController(@Qualifier("v3WithTxOrderFacade") OrderService orderService) {
 		this.orderService = orderService;
 	}
 

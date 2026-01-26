@@ -28,7 +28,7 @@ public class V1OrderService implements OrderService {
 		product.decreaseStock(quantity);
 
 		// 4. 주문 생성
-		Order order = new Order(product, quantity);
+		Order order = new Order(productId, quantity);
 		orderRepository.save(order);
 
 		// 트랜잭션 끝에서 flush + commit

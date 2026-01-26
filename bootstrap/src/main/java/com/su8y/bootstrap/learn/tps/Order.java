@@ -12,15 +12,16 @@ public class Order {
     @Id @GeneratedValue
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Product product;
+	@Column(name = "product_id", nullable = false, updatable = false)
+	private Long productId;
+
 
     private int quantity;
 
     protected Order() {}
 
-    public Order(Product product, int quantity) {
-        this.product = product;
+    public Order(long productId, int quantity) {
+        this.productId = productId;
         this.quantity = quantity;
     }
 }
