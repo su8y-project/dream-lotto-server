@@ -7,5 +7,5 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import(LottoDomainConfig.class)
-public class ApiConfig {
+public class AppConfig {
 }
