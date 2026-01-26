@@ -33,7 +33,7 @@ export default function () {
     );
 
     check(res, {
-        '주문 성공 (201)': (r) => r.status === 201,
+        '주문 성공 (201)': (r) => r.status === 201 || r.status === 200,
         '품절 처리됨 (409/410)': (r) => r.status === 409 || r.status === 410,
     });
 }

@@ -9,43 +9,32 @@ import { check } from 'k6';
  */
 export let options = {
     scenarios: {
-        warmup_100: {
+        soak_500: {
             executor: 'constant-arrival-rate',
-            rate: 100,
+            rate: 500,
             timeUnit: '1s',
-            duration: '1m',
-            preAllocatedVUs: 200,
-            maxVUs: 500,
+            duration: '30m',
+            preAllocatedVUs: 800,
+            maxVUs: 1200,
             startTime: '0s',
         },
-
-        peak_4000: {
-            executor: 'constant-arrival-rate',
-            rate: 4000,
-            timeUnit: '1s',
-            duration: '4m',
-            preAllocatedVUs: 2000,
-            maxVUs: 4000,
-            startTime: '1m',
-        },
-
-        recovery_2000: {
+        spike_1m: {
             executor: 'constant-arrival-rate',
             rate: 2000,
             timeUnit: '1s',
-            duration: '2m',
-            preAllocatedVUs: 1500,
+            duration: '20s',
+            preAllocatedVUs: 2000,
+            maxVUs: 3000,
+            startTime: '1m',
+        },
+        spike_5m: {
+            executor: 'constant-arrival-rate',
+            rate: 2000,
+            timeUnit: '1s',
+            duration: '20s',
+            preAllocatedVUs: 2000,
             maxVUs: 3000,
             startTime: '5m',
-        },
-        cooldown_100: {
-            executor: 'constant-arrival-rate',
-            rate: 100,
-            timeUnit: '1s',
-            duration: '1m',
-            preAllocatedVUs: 200,
-            maxVUs: 500,
-            startTime: '7m',
         },
     },
     noConnectionReuse: true,
