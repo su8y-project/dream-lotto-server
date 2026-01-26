@@ -1,11 +1,9 @@
 package com.su8y.bootstrap.learn.tps;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Primary
 public class V2OrderService implements OrderService{
 
     private final ProductRepository productRepository;

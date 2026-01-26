@@ -15,10 +15,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @SpringBootTest
-class V2OrderServiceTest {
+class V3OrderServiceTest {
 
 	@Autowired
-	private V2OrderService orderService;
+	private V3OrderService orderService;
 
 	@Autowired
 	private ProductRepository productRepository;
@@ -42,7 +42,7 @@ class V2OrderServiceTest {
 	}
 
 	@Test
-	@DisplayName("V2OrderService: 동시에 1,000개 주문 요청 시 재고가 0이 되어야 한다")
+	@DisplayName("V3OrderService: 동시에 1,000개 주문 요청 시 재고가 0이 되어야 한다")
 	void concurrency_test() throws InterruptedException {
 		// given
 		int threadCount = 1000; // 총 요청 횟수
@@ -61,7 +61,7 @@ class V2OrderServiceTest {
 			});
 		}
 
-		latch.await(); // 10,000개가 다 끝날 때까지 대기
+		latch.await();
 
 		// then
 		Product product = productRepository.findById(productId).orElseThrow();

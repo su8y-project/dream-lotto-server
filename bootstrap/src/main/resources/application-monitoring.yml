@@ -16,7 +16,3 @@ management:
         http.server.requests: true
       sla:
         http.server.requests: 100ms, 500ms, 1s
-logging:
-  level:
-    org.hibernate.SQL: debug
-    org.hibernate.type.descriptor.sql: trace
