@@ -1,7 +1,7 @@
 server:
   tomcat:
     threads:
-      max: 500
+      max: 1000
     accept-count: 50
     connection-timeout: 2s
 
@@ -15,7 +15,7 @@ spring:
     password: ${POSTGRES_PASSWORD:}
     driver-class-name: org.postgresql.Driver
     hikari:
-      maximum-pool-size: 100
+      maximum-pool-size: 50
       connection-timeout: 10000
 
   jpa:

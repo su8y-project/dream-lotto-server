@@ -12,17 +12,15 @@ export let options = {
         rush_order: {
             executor: 'ramping-arrival-rate',
             stages: [
-                { duration: '1m', target: 50 },
-                { duration: '8m', target: 4000 },
-                { duration: '4m', target: 2000 },
-                { duration: '1m', target: 50 },
+                { duration: '1m', target: 20000 },
+                { duration: '3m', target: 20000 },
             ],
             preAllocatedVUs: 500,
             maxVUs: 2000,
         }
 
     },
-    noConnectionReuse: true,
+    // noConnectionReuse: true,
 };
 
 export default function () {
