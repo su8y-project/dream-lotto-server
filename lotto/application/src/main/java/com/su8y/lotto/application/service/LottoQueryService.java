@@ -1,6 +1,6 @@
 package com.su8y.lotto.application.service;
 
-import com.su8y.lotto.application.dto.LottoTicketResponse;
+import com.su8y.lotto.application.common.LottoTicketResponse;
 import com.su8y.lotto.application.port.in.query.LottoGetByUserIdUseCase;
 import com.su8y.lotto.application.port.port.LottoQueryPort;
 

@@ -1,4 +1,4 @@
-package com.su8y.lotto.application.dto;
+package com.su8y.lotto.application.common;
 
 import com.su8y.lotto.domain.LottoTicket;
 

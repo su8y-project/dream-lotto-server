@@ -1,6 +1,7 @@
 package com.su8y.lotto.application.service;
 
 import com.su8y.common.idgenerator.IdGenerator;
+import com.su8y.lotto.application.common.LottoConstant;
 import com.su8y.lotto.domain.LottoGenerator;
 import com.su8y.lotto.domain.LottoNumbers;
 import com.su8y.lotto.domain.LottoTicket;
@@ -44,7 +45,7 @@ public class LottoRandomLottoGenerator implements LottoGenerator {
 
 	@Override
 	public boolean isSupport(String lottoType) {
-		return "RANDOM".equalsIgnoreCase(lottoType);
+		return LottoConstant.RANDOM.name().equalsIgnoreCase(lottoType);
 	}
 
 }
