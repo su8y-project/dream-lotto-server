@@ -3,7 +3,7 @@ package com.su8y.lotto.adapter.in.web;
 import com.su8y.common.api.security.AuthenticatedUser;
 import com.su8y.common.api.security.CurrentUser;
 import com.su8y.common.api.security.CurrentUserId;
-import com.su8y.lotto.application.dto.LottoTicketResponse;
+import com.su8y.lotto.application.common.LottoTicketResponse;
 import com.su8y.lotto.application.port.in.command.LottoGenerationUseCase;
 import com.su8y.lotto.application.port.in.query.LottoGetByUserIdUseCase;
 import com.su8y.lotto.application.service.LottoRandomGenerationCommand;
