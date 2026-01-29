@@ -1,4 +1,7 @@
+version: '3.9'
+
 services:
+  # Nginx
   nginx:
     image: nginx:latest
     container_name: nginx_proxy_container
@@ -10,30 +13,70 @@ services:
       - app
       - prometheus
       - grafana
-      - redis
     restart: always
 
+
+  # 애플리케이션 구조
   app:
     container_name: app_server
     build: .
-    env_file:
-      - .env.docker
     ports:
       - "8080:8080"
       - "8082:8082"
+    env_file:
+      - .env
     volumes:
       - ./logs:/app/logs
     restart: always
     depends_on:
+      - postgres
       - redis
 
   postgres:
     container_name: postgres_container
     image: postgres:15
     env_file:
-      - .env.docker
+      - .env
     ports:
       - "5432:5432"
+
+  redis:
+    image: redis:alpine
+    container_name: redis_container
+    ports:
+      - "6379:6379"
+
+
+  # 모니터링 구조
+  grafana:
+    container_name: grafana_container
+    image: grafana/grafana
+    env_file:
+      - .env
+    user: "root"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./config/grafana/provisioning:/etc/grafana/provisioning
+    restart: always
+    depends_on:
+      - loki
+      - prometheus
+
+  prometheus:
+    user: "root"
+    image: prom/prometheus
+    container_name: prometheus_container
+    env_file:
+      - .env
+    volumes:
+      - ./config/prometheus:/etc/prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - '--web.enable-lifecycle'
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    restart: always
 
   postgres_exporter:
     image: prometheuscommunity/postgres-exporter
@@ -46,36 +89,26 @@ services:
       - postgres
     restart: always
 
-
-  redis:
-    image: redis:alpine
-    container_name: redis_container
+  loki:
+    image: grafana/loki
+    container_name: loki_container
     ports:
-      - "6379:6379"
-
-
-  prometheus:
-    user: "root"
-    image: prom/prometheus
-    container_name: prometheus_container
+      - "3100:3100"
     volumes:
-      - ./config/prometheus:/etc/prometheus
-    ports:
-      - "9090:9090"
-    command:
-      - '--web.enable-lifecycle'
-      - '--config.file=/etc/prometheus/prometheus.yml'
-    restart: always
+      - ./config/loki/local-config.yaml:/etc/loki/local-config.yaml
+    environment:
+      TZ: "Asia/Seoul"
 
-
-  grafana:
-    user: "root"
-    image: grafana/grafana
-    container_name: grafana_container
+  alloy:
+    image: grafana/alloy
+    container_name: alloy_container
+    command: [
+      "run",
+      "--server.http.listen-addr=0.0.0.0:12345",
+      "/etc/alloy/config.alloy"
+    ]
     ports:
-      - "3000:3000"
+      - "12345:12345"
     volumes:
-      - ./config/grafana/provisioning:/etc/grafana/provisioning
-    env_file:
-      - .env.docker
-    restart: always
+      - ./logs:/var/log/app:ro
+      - ./config/alloy/config.alloy:/etc/alloy/config.alloy
